@@ -8,7 +8,7 @@ const PaydWallet = ({ balance }) => {
     <Card>
       <a
         href="#"
-        className="block max-w-sm p-6  border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        className="block w-[300px] h-[150px] max-w-4xl p-6  border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center "
         style={{ backgroundColor: "#18D26E"}}
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
