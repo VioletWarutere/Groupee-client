@@ -2,60 +2,43 @@ import React, { useState, useContext } from "react";
 import { GroupsContext } from "../contexts/GroupsContext";
 import MultiSelectSearch from "./MultiSelectSearch";
 
+
 const GroupForm = ({ closeModal }) => {
   const { addGroup } = useContext(GroupsContext);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     amount: 0,
-    accountType: "savings",
+    accountType: "savings", // Default account type
     users: [],
-    image: null, // Add image to form data
+    image: null, // Placeholder for image
   });
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
-    if (e.target.name === "image") {
-      setFormData({ ...formData, image: e.target.files[0] }); // Handle image input
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, image: reader.result });
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const newGroup = {
-      name: formData.name,
-      description: formData.description,
-      amount: formData.amount,
-      accountType: formData.accountType,
-      users: formData.users,
-      image: formData.image ? URL.createObjectURL(formData.image) : null, // Convert image file to URL
-    };
-    
-    addGroup(newGroup);
-    setSuccessMessage("Success! Group added.");
-    
-    setTimeout(() => {
-      setSuccessMessage("");
-      setFormData({
-        name: "",
-        description: "",
-        amount: 0,
-        accountType: "savings",
-        users: [],
-        image: null,
-      });
-      closeModal();
-    }, 2000);
+    addGroup(formData);
+    closeModal(); // Close the modal after submission
+    alert("Success! Group added.");
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
-      {successMessage && (
-        <p className="text-green-500 text-center mb-4">{successMessage}</p>
-      )}
       <div className="mb-5">
         <label
           htmlFor="groupName"
@@ -70,7 +53,6 @@ const GroupForm = ({ closeModal }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Trip with the girlsss"
           onChange={handleChange}
-          value={formData.name}
           required
         />
       </div>
@@ -87,7 +69,6 @@ const GroupForm = ({ closeModal }) => {
           name="description"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onChange={handleChange}
-          value={formData.description}
           required
         />
       </div>
@@ -104,7 +85,6 @@ const GroupForm = ({ closeModal }) => {
           name="amount"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onChange={handleChange}
-          value={formData.amount}
           required
         />
       </div>
@@ -147,17 +127,14 @@ const GroupForm = ({ closeModal }) => {
         <input
           type="file"
           id="groupImage"
-          name="image"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={handleChange}
+          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          onChange={handleImageChange}
           accept="image/*"
         />
       </div>
       <div className="flex items-start mb-5">
-        <MultiSelectSearch
-          value={formData.users}
-          handleChange={(users) => setFormData({ ...formData, users })}
-        />
+        
+       <MultiSelectSearch value={formData.users} handleChange={handleChange}/>
       </div>
       <button
         type="submit"
