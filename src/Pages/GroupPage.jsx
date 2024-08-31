@@ -54,7 +54,7 @@ const GroupDetailView = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-8 p-2">
-      <Button color="gray" onClick={() => navigate("/home")} className="mb-4">
+      <Button color="gray" onClick={() => navigate("/home")} className="mb-4 p-0">
         Back
       </Button>
       <Card className="bg-blue-50 shadow-md rounded-lg border border-gray-200">
@@ -99,6 +99,9 @@ const GroupDetailView = () => {
             Paybill: <span className="font-bold text-gray-800 dark:text-gray-200">123456</span>
           </p>
           <div className="mt-4 flex gap-4">
+          <Button color="gray" className="flex items-center gap-2">
+              Payd
+            </Button>
             <Button color="gray" className="flex items-center gap-2">
               <AiOutlineWallet />
               Lipa na Mpesa
@@ -111,9 +114,7 @@ const GroupDetailView = () => {
               <FaStripeS />
               Stripe
             </Button>
-            <Button color="gray" className="flex items-center gap-2">
-              Payd
-            </Button>
+            
           </div>
         </div>
 
@@ -131,14 +132,14 @@ const GroupDetailView = () => {
         </div>
 
         <div className="mt-6 flex justify-between items-center">
-          <Button color="green">Pay</Button>
-          <Button color="red" onClick={toggleWithdrawModal}>
+          <Button color="gray">Pay</Button>
+          <Button color="black" onClick={toggleWithdrawModal}>
             Withdraw
           </Button>
           <Button color="gray" onClick={toggleDeleteModal}>
             Request Delete
           </Button>
-          <Button color="red" onClick={handleDeleteGroup}>
+          <Button color="black" onClick={handleDeleteGroup}>
             Delete Group (Admin)
           </Button>
         </div>
@@ -160,7 +161,7 @@ const GroupDetailView = () => {
           <Button color="gray" onClick={toggleDeleteModal}>
             Cancel
           </Button>
-          <Button color="orange" className="text-white" onClick={() => alert("Delete request sent for approval.")}>
+          <Button color="gray" className="text-white" onClick={() => alert("Delete request sent for approval.")}>
             Request Deletion Approval
           </Button>
         </Modal.Footer>
@@ -182,7 +183,7 @@ const GroupDetailView = () => {
           <Button color="gray" onClick={toggleWithdrawModal}>
             Cancel
           </Button>
-          <Button color="green" className="text-white" onClick={handleWithdrawRequest}>
+          <Button color="gray" className="text-white" onClick={handleWithdrawRequest}>
             Request Withdrawal
           </Button>
         </Modal.Footer>

@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { GroupsContext } from "../contexts/GroupsContext";
 import MultiSelectSearch from "./MultiSelectSearch";
 
-
 const GroupForm = ({ closeModal }) => {
   const { addGroup } = useContext(GroupsContext);
   const [formData, setFormData] = useState({
@@ -10,7 +9,7 @@ const GroupForm = ({ closeModal }) => {
     description: "",
     amount: 0,
     accountType: "savings", // Default account type
-    users: [],
+    users: [], // Array to store the selected users
     image: null, // Placeholder for image
   });
 
@@ -132,9 +131,11 @@ const GroupForm = ({ closeModal }) => {
           accept="image/*"
         />
       </div>
-      <div className="flex items-start mb-5">
-        
-       <MultiSelectSearch value={formData.users} handleChange={handleChange}/>
+      <div className="mb-5">
+        <MultiSelectSearch
+          selectedUsers={formData.users}
+          setSelectedUsers={(users) => setFormData({ ...formData, users })}
+        />
       </div>
       <button
         type="submit"

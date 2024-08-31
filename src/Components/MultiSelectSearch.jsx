@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const MultiSelectSearch = ({value, handleChange}) => {
+const MultiSelectSearch = ({ selectedUsers, setSelectedUsers }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedUsers, setSelectedUsers] = useState([]);
 
   // Sample list of user names
   const userNames = [
@@ -36,7 +35,6 @@ const MultiSelectSearch = ({value, handleChange}) => {
   const handleSelect = (name) => {
     if (!selectedUsers.includes(name)) {
       setSelectedUsers([...selectedUsers, name]);
-      
     }
     setQuery(""); // Clear the input field after selection
     setSuggestions([]); // Clear the suggestions
@@ -66,7 +64,7 @@ const MultiSelectSearch = ({value, handleChange}) => {
             <li
               key={index}
               onClick={() => handleSelect(name)}
-              className=" text-black px-4 py-2 cursor-pointer hover:bg-blue-500 hover:text-white"
+              className="text-black px-4 py-2 cursor-pointer hover:bg-blue-500 hover:text-white"
             >
               {name}
             </li>
