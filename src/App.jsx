@@ -1,13 +1,14 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { GroupsProvider } from './contexts/GroupsContext';
-import Dashboard from './Pages/Dashboard';
-import GroupDetailView from './Pages/GroupPage';
 import LandingPage from './Pages/LandingPage';
 import Login from './Pages/auth/Login';
 import Signup from './Pages/auth/SignUp';
+import Dashboard from './Pages/Dashboard';
+import GroupDetailView from './Pages/GroupPage';
+import { GroupsProvider } from './contexts/GroupsContext';
 
-function App() {
+const App = () => {
   return (
     <GroupsProvider>
       <Router>
@@ -21,6 +22,6 @@ function App() {
       </Router>
     </GroupsProvider>
   );
-}
+};
 
 export default App;

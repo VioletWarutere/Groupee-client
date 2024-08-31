@@ -1,29 +1,32 @@
-import React, { createContext, useState, useEffect } from "react";
+// src/contexts/GroupsContext.jsx
+import React, { createContext, useState, useEffect } from 'react';
 
 export const GroupsContext = createContext();
 
 export const GroupsProvider = ({ children }) => {
-  const [groups, setGroups] = useState(() => {
-    const savedGroups = localStorage.getItem("groups");
-    return savedGroups ? JSON.parse(savedGroups) : [];
-  });
+  const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("groups", JSON.stringify(groups));
+    const storedGroups = JSON.parse(localStorage.getItem('groups'));
+    if (storedGroups) {
+      setGroups(storedGroups);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('groups', JSON.stringify(groups));
   }, [groups]);
 
   const addGroup = (group) => {
-    setGroups([...groups, group]);
+    setGroups((prevGroups) => [...prevGroups, group]);
   };
 
-  const updateGroup = (index, updatedGroup) => {
-    const updatedGroups = [...groups];
-    updatedGroups[index] = updatedGroup;
-    setGroups(updatedGroups);
+  const removeGroup = (groupId) => {
+    setGroups((prevGroups) => prevGroups.filter(group => group.id !== groupId));
   };
 
   return (
-    <GroupsContext.Provider value={{ groups, addGroup, updateGroup }}>
+    <GroupsContext.Provider value={{ groups, addGroup, removeGroup }}>
       {children}
     </GroupsContext.Provider>
   );
