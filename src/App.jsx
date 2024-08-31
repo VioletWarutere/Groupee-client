@@ -15,16 +15,9 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={< LandingPage />} />
-        <Route path="/group/:id">
-          {({ match }) => {
-            const group = groupData.find(
-              (g) => g.id === parseInt(match.params.id)
-            );
-            return group ? <GroupDetailView group={group} /> : <p>Group not found</p>;
-          }}
-        </Route>
+        
         <Route exact path="/home" element={< Dashboard />} />
-        <Route exact path="/group/:id" element={<GroupDetailView />} />
+        <Route exact path="/group/" element={<GroupDetailView />} />
        
       </Routes>
     </Router>

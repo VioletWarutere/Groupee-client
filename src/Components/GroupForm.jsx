@@ -58,7 +58,7 @@ const GroupForm = () => {
           htmlFor="amount"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Amount To Split
+          Amount To Save
         </label>
         <input
           type="number"

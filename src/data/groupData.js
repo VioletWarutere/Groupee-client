@@ -1,9 +1,9 @@
 const groupData = [
   {
     id: 1,
-    name: 'Leadership Development Program',
+    name: 'Advanced Javascript Book',
     amount: '£50 GBP',
-    description: 'A workshop to enhance leadership skills in young professionals.',
+    description: 'A book to upskill and give me the knowledge to support myself through employment and entrepreneurship.',
     members: 'Sarah Thompson',
     use: 'savings'
   },
@@ -25,17 +25,17 @@ const groupData = [
   },
   {
     id: 4,
-    name: 'Entrepreneurship Bootcamp',
+    name: 'Business capital',
     amount: '$100 CAD',
-    description: 'A bootcamp designed to help aspiring entrepreneurs develop their business ideas.',
+    description: 'I want to raise capital to start a side hustle that will generate income for my needs',
     members: 'John Smith',
     use: 'expenses splitting'
   },
   {
     id: 5,
-    name: 'Tech Skills Workshop',
+    name: ' Holiday at Borabora',
     amount: '€30 EUR',
-    description: 'A workshop to learn advanced technical skills in software development.',
+    description: 'A trip to recover from burnout and regain my peace.',
     members: 'Jane Doe',
     use: 'savings'
   },

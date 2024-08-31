@@ -7,6 +7,7 @@ import PaydWallet from "../Components/PaydWallet";
 import Nav from "../Components/Nav";
 import AddGroup from "../Components/AddGroup";
 import groupData from "../data/groupData"; // Assuming this is where your group data is stored
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [balance, setBalance] = useState(3000.72);
@@ -65,7 +66,9 @@ const Dashboard = () => {
             {filteredGroups.map((group) => (
               <Card key={group.id} className="max-w-sm">
                 <h5 className="text-xl font-bold tracking-tight text-gray-900">
+                  <Link to={'/group/'}>
                   {group.name}
+                  </Link>
                 </h5>
                 <p className="text-gray-700">{group.description}</p>
                 <p className="text-gray-700">{group.amount}</p>

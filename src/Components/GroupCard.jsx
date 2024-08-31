@@ -17,7 +17,7 @@ const GroupCard = ({groupName, groupDescription, amount, groupMembers, id}) => {
     <div>
       <Card>
         <Link
-          to={`/group/${id}`}
+          to={`/group/`}
           className="flex flex-col items-center  border  rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
         >
           
