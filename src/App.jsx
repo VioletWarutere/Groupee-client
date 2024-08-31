@@ -15,8 +15,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={< LandingPage />} />
-        <Route exact path="/login" element={< Login />} />
-        <Route exact path="/signup" element={< Signup />} />
+
         <Route exact path="/home" element={< Dashboard />} />
         <Route exact path="/group/:id" element={<GroupDetailView />} />
        

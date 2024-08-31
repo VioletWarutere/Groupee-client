@@ -1,11 +1,13 @@
 // src/components/Dashboard.jsx
 import { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
+import FilterComponent from '../Components/Filter';
+
 import PaydWallet from "../Components/PaydWallet";
 
 import Nav from "../Components/Nav";
 import AddGroup from "../Components/AddGroup";
-//import Groups from "../Components/Groups";
+import Groups from "../Components/Groups";
 
 const Dashboard = () => {
   const [balance, setBalance] = useState(3000.72);
@@ -43,10 +45,10 @@ const Dashboard = () => {
            <AddGroup />
           </div>
 
-          {/* Groups */}
-          <div className="flex flex-row justify-between">
-            {/* <Groups /> */}
-          </div>
+          
+          <FilterComponent />
+            <Groups />
+         
 
           {/* Transactions Table */}
           <Card>

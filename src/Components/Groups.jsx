@@ -1,26 +1,27 @@
-//import React from 'react'
-import GroupCard from "./GroupCard";
+//import React from 'react';
+import GroupCard from './GroupCard';
+import groupData from '../data/groupData';
 
 const Groups = () => {
-    const groups = [
-        {id: 1, name: 'Group 1', description: 'Description 1'},
-        {id: 2, name: 'Group 2', description: 'Description 2'},
-        {id: 3, name: 'Group 3', description: 'Description 3'},
-        // Add more groups here
-  
-    ];
-  return groups.map(group => { return (
-        
-        <GroupCard
-        groupName={group.name} 
-        groupDescription={group.description}
-        key={group.id}
-        amount={group.amount}
-        members={group.members}
-         />
-  
-    )})
-  
-}
 
-export default Groups
+    const groups = groupData;
+  // Array of groups
+  
+
+  return (
+    <div className="grid grid-cols-3 gap-4 p-4">
+        
+      {groups.map((group) => (
+        <GroupCard
+          key={group.id}
+          groupName={group.name}
+          groupDescription={group.description}
+          amount={group.amount}
+          groupMembers={group.members}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Groups;

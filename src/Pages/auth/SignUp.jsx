@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 
 // eslint-disable-next-line no-unused-vars, react/prop-types
 const SignUp = ({ setShowLoginForm }) => {
+  /* const [formData, setFormData ] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phone_number: '',
+  }) */
   return (
     <div className="w-full max-w-md py-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
@@ -16,8 +23,10 @@ const SignUp = ({ setShowLoginForm }) => {
             <Label htmlFor="firstName" value="First Name" />
             <TextInput
               id="firstName"
+              name="firstName"
               type="text"
               placeholder="Enter your first name"
+              
               required
             />
           </div>
