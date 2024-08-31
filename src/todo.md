@@ -1,0 +1,5 @@
+- Create the handlers
+- Create a users context
+- Fix how to input till number and paybill
+- Profile management
+- SPA of auth
