@@ -1,20 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { Button, Card, Modal, Progress, Badge } from "flowbite-react";
 import { FaCcApplePay, FaStripeS } from "react-icons/fa";
 import { AiOutlineWallet } from "react-icons/ai";
 
-const GroupDetailView = () => {
+const GroupDetailView = ({ group }) => {
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
-
-  // Sample data for the group
-  const group = {
-    name: "Vacation Fund",
-    description: "Saving together for our dream vacation!",
-    members: ["Alice Johnson", "Bob Smith", "Charlie Brown", "David Wilson"],
-    plannedAmount: 10000, // Total amount planned to save
-    savedAmount: 4000, // Amount already saved
-  };
 
   // Calculate the progress
   const progressPercentage = (group.savedAmount / group.plannedAmount) * 100;
@@ -33,16 +23,26 @@ const GroupDetailView = () => {
             className="w-32 h-32 object-cover rounded-full border-4 border-blue-500"
           />
           <div className="ml-4">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{group.name}</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">{group.description}</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {group.name}
+            </h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              {group.description}
+            </p>
           </div>
         </div>
 
         <div className="mt-4">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Members</h3>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Members
+          </h3>
           <div className="mt-2 flex flex-wrap gap-2">
             {group.members.map((member, index) => (
-              <Badge key={index} color="blue" className="bg-blue-500 text-white px-3 py-1 rounded-full">
+              <Badge
+                key={index}
+                color="blue"
+                className="bg-blue-500 text-white px-3 py-1 rounded-full"
+              >
                 {member}
               </Badge>
             ))}
@@ -50,7 +50,9 @@ const GroupDetailView = () => {
         </div>
 
         <div className="mt-4">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Payment Details</h3>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Payment Details
+          </h3>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
             Add bank account details, Paybill, or Till number.
           </p>
@@ -73,16 +75,21 @@ const GroupDetailView = () => {
               Stripe
             </Button>
             <Button color="gray" className="flex items-center gap-2">
-             
               Payd
             </Button>
           </div>
         </div>
 
         <div className="mt-4">
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Saving Progress</h3>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            Saving Progress
+          </h3>
           <div className="flex items-center mt-2">
-            <Progress color="blue" value={progressPercentage} className="w-full mr-4" />
+            <Progress
+              color="blue"
+              value={progressPercentage}
+              className="w-full mr-4"
+            />
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {`${group.savedAmount} / ${group.plannedAmount}`}
             </span>
@@ -110,7 +117,8 @@ const GroupDetailView = () => {
         <Modal.Header>Delete Group</Modal.Header>
         <Modal.Body>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Are you sure you want to delete this group? This action requires approval from all members.
+            Are you sure you want to delete this group? This action requires
+            approval from all members.
           </p>
         </Modal.Body>
         <Modal.Footer>

@@ -1,18 +1,19 @@
 // src/components/Dashboard.jsx
 import { useState, useEffect } from "react";
 import { Card } from "flowbite-react";
-import FilterComponent from '../Components/Filter';
+import FilterComponent from '../Components/FilterComponent'; // Corrected import path
 
 import PaydWallet from "../Components/PaydWallet";
-
 import Nav from "../Components/Nav";
 import AddGroup from "../Components/AddGroup";
-import Groups from "../Components/Groups";
+import groupData from "../data/groupData"; // Assuming this is where your group data is stored
 
 const Dashboard = () => {
   const [balance, setBalance] = useState(3000.72);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [filteredGroups, setFilteredGroups] = useState(groupData);
 
   useEffect(() => {
     // Simulate API call
@@ -28,6 +29,16 @@ const Dashboard = () => {
     }, 1000);
   }, []);
 
+  useEffect(() => {
+    if (selectedFilter) {
+      setFilteredGroups(
+        groupData.filter((group) => group.use === selectedFilter)
+      );
+    } else {
+      setFilteredGroups(groupData);
+    }
+  }, [selectedFilter]);
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Main Content */}
@@ -37,18 +48,31 @@ const Dashboard = () => {
 
         {/* Dashboard Content */}
         <div className="p-6 space-y-6">
-          <div className="flex flex-row justify-between  p-6  border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gray-50" >
+          <div className="flex flex-row justify-between p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gray-50">
             {/* Balance Card */}
             <PaydWallet balance={balance} />
 
             {/* Add Group Modal */}
-           <AddGroup />
+            <AddGroup />
           </div>
 
-          
-          <FilterComponent />
-            <Groups />
-         
+          <FilterComponent
+            selectedFilter={selectedFilter}
+            onFilterChange={setSelectedFilter}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredGroups.map((group) => (
+              <Card key={group.id} className="max-w-sm">
+                <h5 className="text-xl font-bold tracking-tight text-gray-900">
+                  {group.name}
+                </h5>
+                <p className="text-gray-700">{group.description}</p>
+                <p className="text-gray-700">{group.amount}</p>
+                <p className="text-gray-700">Members: {group.members}</p>
+              </Card>
+            ))}
+          </div>
 
           {/* Transactions Table */}
           <Card>
