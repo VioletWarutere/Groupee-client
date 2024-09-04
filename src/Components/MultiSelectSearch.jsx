@@ -14,7 +14,26 @@ const MultiSelectSearch = ({ selectedUsers, setSelectedUsers }) => {
     "Frank Wright",
     "Grace Lee",
     "Hannah Green",
+    "Ivy Clark",
+    "Jack Robinson",
+    "Karen Harris",
+    "Leo Edwards",
+    "Mia Turner",
+    "Noah King",
+    "Olivia Scott",
+    "Paul Evans",
+    "Quinn Adams",
+    "Ruby Collins",
+    "Sam Brooks",
+    "Tina Walker",
+    "Uma Price",
+    "Victor Mitchell",
+    "Wendy Hayes",
+    "Xander Fisher",
+    "Yara Powell",
+    "Zane Carter",
   ];
+  
 
   // Handle input change and filter suggestions
   const handleInputChange = (event) => {

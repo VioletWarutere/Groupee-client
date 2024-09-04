@@ -1,44 +1,22 @@
-import React from "react";
-import { Card } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { Card } from "flowbite-react"; // Assuming you are using Flowbite for consistent UI components
 
-// eslint-disable-next-line react/prop-types
-const GroupCard = ({ GroupName, GroupDescription, amount, GroupMembers, id, image }) => {
+const GroupCard = ({ GroupName, GroupDescription, image }) => {
   return (
-    <div>
-      <Card>
-        <Link
-          to={`/group/${id}`}
-          className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-[320px] p-2"
-        >
+    <div className="mb-4">
+      <Card className="h-full bg-[#0077b6] shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300">
+        <Link to={`/group/${encodeURIComponent(GroupName)}`} className="flex flex-col items-center">
+          {/* Group Image */}
           <img
-            className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-            src={image || "/docs/images/blog/image-4.jpg"}
+            className="object-cover w-full h-40 rounded-t-lg md:h-48 md:w-full md:rounded-none"
+            src={image || "/images/placeholder.jpg"} // Placeholder if no image is provided
             alt={GroupName}
           />
+          
+          {/* Group Details */}
           <div className="flex flex-col justify-between p-4 leading-normal">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {GroupName}
-            </h5>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {GroupDescription}
-            </p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              ${amount}
-            </p>
-            <div className="group-members">
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Members: {GroupMembers.length}
-              </span>
-              {GroupMembers.map((member, index) => (
-                <span
-                  key={index}
-                  className="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
-                >
-                  {member}
-                </span>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold text-white text-center mb-2">{GroupName}</h2>
+            <p className="text-gray-200 mb-3 text-center">{GroupDescription || "No description available."}</p>
           </div>
         </Link>
       </Card>

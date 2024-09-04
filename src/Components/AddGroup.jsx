@@ -19,11 +19,11 @@ const AddGroup = () => {
       </Button>
 
       {/* Main Modal */}
-      <Modal show={isOpen} onClose={closeModal}>
-        <Modal.Header>
-          <h3 className="p-4">Create Group</h3>
+      <Modal show={isOpen} onClose={closeModal} >
+        <Modal.Header className="bg-[#03045e] pl-[40%]">
+          <h3 className="p-4 text-white ">Create Group</h3>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-[#03045e]">
           <GroupForm closeModal={closeModal} />
         </Modal.Body>
       </Modal>

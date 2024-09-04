@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 
+// Create the context
 export const GroupsContext = createContext();
 
+// Create the provider component
 export const GroupsProvider = ({ children }) => {
   const [groups, setGroups] = useState(() => {
     const savedGroups = localStorage.getItem("groups");
@@ -16,10 +18,8 @@ export const GroupsProvider = ({ children }) => {
     setGroups([...groups, group]);
   };
 
-  const updateGroup = (index, updatedGroup) => {
-    const updatedGroups = [...groups];
-    updatedGroups[index] = updatedGroup;
-    setGroups(updatedGroups);
+  const updateGroup = (groupName, updatedGroup) => {
+    setGroups(groups.map((group) => (group.name === groupName ? updatedGroup : group)));
   };
 
   return (

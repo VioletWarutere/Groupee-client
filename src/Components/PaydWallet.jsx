@@ -5,20 +5,20 @@ import { Card } from "flowbite-react";
 const PaydWallet = ({ balance }) => {
     //const balance = 2025;
   return (
-    <Card>
+    <div>
       <a
         href="#"
-        className="block w-[300px] h-[150px] max-w-4xl p-6  border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center "
+        className="block w-[300px] h-[150px] max-w-4xl p-6  border border-gray-700 rounded-lg shadow hover:bg-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-center "
         style={{ backgroundColor: "#18D26E"}}
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
          PaydWallet
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
-          ${balance}
+          Ksh{balance}
         </p>
       </a>
-    </Card>
+    </div>
   );
 };
 
